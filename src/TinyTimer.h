@@ -85,7 +85,7 @@ public:
 			{
 				m_callback();
 				if (m_repeat && !--m_repeat)
-					m_callback = nullptr;
+					disable();
 				m_now += m_delay;
 			}
 		}
@@ -94,6 +94,11 @@ public:
 	void restart()
 	{
 		m_now = now();
+	}
+
+	void disable()
+	{
+		m_callback = nullptr;
 	}
 };
 
