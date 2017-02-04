@@ -32,21 +32,24 @@ private:
 	time_t m_now;
 
 public:
-	TinyTimer() : TinyTimer(nullptr)
+	TinyTimer()
 	{
+		init(nullptr);
 	}
 
-	TinyTimer(callback_t callback) : TinyTimer(callback, 0)
+	TinyTimer(callback_t callback)
 	{
+		init(callback, 0);
 	}
 
-	TinyTimer(callback_t callback, time_t delay) : TinyTimer(callback, delay, 0)
+	TinyTimer(callback_t callback, time_t delay)
 	{
+		init(callback, delay, 0);
 	}
 
-	TinyTimer(callback_t callback, time_t delay, size_t repeat) : m_callback(callback), m_delay(delay), m_repeat(repeat)
+	TinyTimer(callback_t callback, time_t delay, size_t repeat)
 	{
-		restart();
+		init(callback, delay, repeat);
 	}
 
 	void init(callback_t callback)
