@@ -22,7 +22,7 @@ template <unsigned long (*now)() = millis>
 class TinyTimer
 {
 public:
-	typedef unsigned long time_t;
+	typedef decltype(now()) time_t;
 	typedef void (*callback_t)();
 
 private:
