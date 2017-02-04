@@ -70,20 +70,20 @@ public:
 	template <size_t size>
 	static void update(TinyTimer (&timers)[size])
 	{
-		for (auto &timer : timers)
-			update(timer);
+		for (auto &&timer : timers)
+			timer.update();
 	}
 
-	static void update(TinyTimer &timer)
+	void update()
 	{
-		if (timer.m_callback)
+		if (m_callback)
 		{
-			if (now() - timer.m_now >= timer.m_delay)
+			if (now() - m_now >= m_delay)
 			{
-				timer.m_callback();
-				if (timer.m_repeat && !--timer.m_repeat)
-					timer.m_callback = nullptr;
-				timer.m_now += timer.m_delay;
+				m_callback();
+				if (m_repeat && !--m_repeat)
+					m_callback = nullptr;
+				m_now += m_delay;
 			}
 		}
 	}
